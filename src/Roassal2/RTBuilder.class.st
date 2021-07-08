@@ -43,7 +43,7 @@ RTBuilder >> build [
 
 { #category : #public }
 RTBuilder >> cleanView [
-	view edges copy do: #remove.
+	view geomEdges copy do: #remove.
 	view elements copy do: #remove.
 ]
 

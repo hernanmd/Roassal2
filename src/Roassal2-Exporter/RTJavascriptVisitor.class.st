@@ -619,7 +619,7 @@ RTJavascriptVisitor >> visitPolygonShape: aPolygon [
 		nextPutAll: ('", o: {x: ',(self number: r origin x),', y: ',(self number: r origin y),'}');
 		nextPutAll: (', c: {x: ',(self number: r corner x),', y: ',(self number: r corner y),'}, p: "').
 	
-	aPolygon vertices do: [ :p |
+	aPolygon geomVertices do: [ :p |
 		stream nextPutAll: (self number: p x),',',(self number: p y),' '. ].
 	stream nextPutAll: '",'.
 	self addBorderColor: aPolygon strokePaint.

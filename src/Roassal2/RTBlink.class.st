@@ -100,7 +100,7 @@ RTBlink class >> highlightOutgoingEdgesOf: element [
 { #category : #public }
 RTBlink class >> incomingEdgesOf: element [
 	"Blink all the edges that leave the node element"
-	element view edges 
+	element view geomEdges 
 		do: [ :edg | (edg from == element) ifTrue: [ RTBlink on: edg ] ].
 ]
 
@@ -131,7 +131,7 @@ RTBlink class >> on: element in: view [
 { #category : #public }
 RTBlink class >> outgoingEdgesOf: element [
 	"Blink all the edges that leave the node element"
-	element view edges 
+	element view geomEdges 
 		do: [ :edg | (edg to == element) ifTrue: [ RTBlink on: edg ] ].
 ]
 

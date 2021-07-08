@@ -37,7 +37,7 @@ v addMenu: 'add edges' callback: [
 	anim addEdges: edges ].
 
 v addMenu: 'remove edges' callback: [ 
-	v edges do: #remove.
+	v geomEdges do: #remove.
 	anim removeAllEdges.
 	v signalUpdate ].
 
@@ -513,8 +513,8 @@ RTRoassalExample >> exampleAnotherTreeLayout [
 		objects: (1 to: 100);
 		shape: (RTLine new color: Color purple);
 		connectFrom: [ :v | v // 2 ] to: #yourself.
-	RTTreeLayout on: view elements edges: view edges.
-	view edges do: [ :e | e trachelShape pushBack ].
+	RTTreeLayout on: view elements edges: view geomEdges.
+	view geomEdges do: [ :e | e trachelShape pushBack ].
 	view @ RTDraggableView.
 	^ view
 ]
@@ -1253,7 +1253,7 @@ b shape lineDualWidth
 	widthFrom: [ :anEdge | (anEdge from model numberOfDependenciesToward: anEdge to model) sqrt  * 4];
 	widthTo: [ :anEdge | (anEdge to model numberOfDependenciesToward: anEdge from model) sqrt * 4].
 
-b edges 
+b geomEdges 
 	noRepetition; noBidirectional;
 	connectToAll: #dependentPackages.
 b layout circle.
@@ -1966,8 +1966,8 @@ RTRoassalExample >> exampleClusterLayout [
 		view: v;
 		objects: Collection withAllSubclasses;
 		connectFrom: #superclass to: #yourself.
-	RTClusterLayout on: v elements edges: v edges.
-	v edges do: [ :e | e trachelShape pushBack ].
+	RTClusterLayout on: v elements edges: v geomEdges.
+	v geomEdges do: [ :e | e trachelShape pushBack ].
 	^ v
 ]
 
@@ -2577,7 +2577,7 @@ RTRoassalExample >> exampleDistinctColors [
 b := RTMondrian new.
 b shape circle.
 b nodes: Collection withAllSubclasses.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 b layout tree.
 b normalizer
 	normalizeSize: #numberOfMethods;
@@ -3241,10 +3241,10 @@ b := RTMondrian new.
 
 b shape circle.
 b nodes: Collection withAllSubclasses.
-b edges moveBehind; connectFrom: #superclass.	
+b geomEdges moveBehind; connectFrom: #superclass.	
 
 b shape bezierLineFollowing: #superclass; color: (Color blue alpha: 0.4).
-b edges 
+b geomEdges 
 	notUseInLayout; 
 	objects: [ :cls | '*Array*' match: cls name ];
 	connectToAll: #dependentClasses.
@@ -3815,7 +3815,7 @@ RTRoassalExample >> exampleForceBasedLayout [
 		shape: (RTLine new color: (Color purple alpha: 0.2));
 		connectFrom: #superclass to: #yourself.
 	edges do: [ :e | e trachelShape pushBack ].
-	RTForceBasedLayout on: v elements edges: v edges.
+	RTForceBasedLayout on: v elements edges: v geomEdges.
 	"v addAnimation: (RTSpringLayoutStepping new view: v)."
 	v @ RTDraggableView.
 	^ v
@@ -4957,9 +4957,9 @@ RTRoassalExample >> exampleMakingVisualizationFit [
 		view: view;
 		objects: Collection withAllSubclasses;
 		connectFrom: #superclass to: #yourself.
-	RTTreeLayout on: view elements edges: view edges.
+	RTTreeLayout on: view elements edges: view geomEdges.
 	view @ RTDraggableView.
-	view edges do: [ :e | e trachelShape pushBack ].
+	view geomEdges do: [ :e | e trachelShape pushBack ].
 	(RTGroup withAll: view elements) translateTo: 0 @ 0.
 
 	"Removing this line will make the visualization larger than the window"
@@ -7080,7 +7080,7 @@ RTRoassalExample >> exampleSmoothLayout [
 			[ 
 			RTTreeLayout new
 				translator: translator;
-				on: v elements edges: v edges.
+				on: v elements edges: v geomEdges.
 			v canvas signalUpdate ].
 	v canvas
 		addMenu: 'treeH'
@@ -7088,7 +7088,7 @@ RTRoassalExample >> exampleSmoothLayout [
 			[ 
 			RTHorizontalTreeLayout new
 				translator: translator;
-				on: v elements edges: v edges.
+				on: v elements edges: v geomEdges.
 			v canvas signalUpdate ].
 	v canvas
 		addMenu: 'cluster'
@@ -7096,7 +7096,7 @@ RTRoassalExample >> exampleSmoothLayout [
 			[ 
 			RTClusterLayout new
 				translator: translator;
-				on: v elements edges: v edges.
+				on: v elements edges: v geomEdges.
 			v canvas signalUpdate ].
 	v canvas
 		addMenu: 'circle'
@@ -7128,7 +7128,7 @@ RTRoassalExample >> exampleSmoothLayout [
 		view: v;
 		objects: (1 to: 100);
 		connectFrom: [ :value | value // 2 ] to: #yourself.
-	RTTreeLayout new on: v elements edges: v edges.
+	RTTreeLayout new on: v elements edges: v geomEdges.
 	^ v
 ]
 
@@ -7408,9 +7408,9 @@ RTRoassalExample >> exampleTreeLayout [
 		view: view;
 		objects: Collection withAllSubclasses;
 		connectFrom: #superclass to: #yourself.
-	RTTreeLayout on: view elements edges: view edges.
+	RTTreeLayout on: view elements edges: view geomEdges.
 	view @ RTDraggableView.
-	view edges do: [ :e | e trachelShape pushBack ].
+	view geomEdges do: [ :e | e trachelShape pushBack ].
 	^ view
 ]
 

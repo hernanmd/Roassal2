@@ -107,7 +107,7 @@ RTForceLayoutStepping >> nodes: elements [
 RTForceLayoutStepping >> prepareLayoutFor: aView [
 	layout
 		nodes: aView elements;
-		edges: aView edges;
+		edges: aView geomEdges;
 		start: aView elements
 ]
 

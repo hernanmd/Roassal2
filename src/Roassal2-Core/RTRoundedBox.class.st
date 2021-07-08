@@ -60,10 +60,10 @@ RTRoundedBox >> defaultBorderRadius [
 { #category : #accessing }
 RTRoundedBox >> geometryFor: anElement [
 	| rect |
-	rect := GRectangle
+	rect := GeomRectangle
 		origin: anElement encompassingRectangle origin
 		corner: anElement encompassingRectangle corner.
-	^ GRoundedRectangle rectangle: rect borderRadius: (self borderRadiusFor: anElement)
+	^ GeomRoundedRectangle rectangle: rect borderRadius: (self borderRadiusFor: anElement)
 ]
 
 { #category : #initialization }

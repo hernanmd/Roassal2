@@ -38,23 +38,23 @@ RTMondrianTest >> testBasic2 [
 RTMondrianTest >> testBasicEdges [
 
 	b nodes: #(1 2).
-	b edges
+	b geomEdges
 		connectTo: [ :v | v + 1 ].
 	b build.
 	
-	self assert: b view edges size equals: 1
+	self assert: b view geomEdges size equals: 1
 ]
 
 { #category : #'tests - edges' }
 RTMondrianTest >> testBasicEdgesAndTree [
 
 	b nodes: #(1 2).
-	b edges
+	b geomEdges
 		connectTo: [ :v | v + 1 ].
 	b layout tree.
 	b build.
 	
-	self assert: b view edges size equals: 1
+	self assert: b view geomEdges size equals: 1
 ]
 
 { #category : #'tests - nodes' }
@@ -143,7 +143,7 @@ RTMondrianTest >> testConnectFromTo [
 
 	b := RTMondrian new.
 	b nodes: #(1 2).
-	b edges allowRepetition; connectFrom: 1 to: 2.
+	b geomEdges allowRepetition; connectFrom: 1 to: 2.
 
 	b build.
 	
@@ -156,7 +156,7 @@ RTMondrianTest >> testConnectFromToNoRepetition [
 
 	b := RTMondrian new.
 	b nodes: #(1 2).
-	b edges noRepetition; connectFrom: 1 to: 2.
+	b geomEdges noRepetition; connectFrom: 1 to: 2.
 
 	b build.
 	
@@ -188,7 +188,7 @@ RTMondrianTest >> testEdgeInInnerFrame [
 	b node: '1'
 		forIt: [ 
 			b nodes: (1 to: 2).
-			b edges connectFrom: #yourself.
+			b geomEdges connectFrom: #yourself.
 			b layout verticalLine ].
 	b node: '2'
 		forIt: [ 
@@ -206,7 +206,7 @@ RTMondrianTest >> testEdgeInInnerFrame2 [
 			b shape rectangle.
 			b nodes: (1 to: 2).
 			b shape line color: Color red.
-			b edges connectFrom: #yourself.
+			b geomEdges connectFrom: #yourself.
 			b layout verticalLine ].
 	b build.
 	
@@ -221,13 +221,13 @@ RTMondrianTest >> testEdgeInInnerFrame3 [
 			b shape rectangle.
 			b nodes: (1 to: 2).
 			b shape line color: Color red.
-			b edges connectTo: [ :v | v + 1 ].
+			b geomEdges connectTo: [ :v | v + 1 ].
 			b layout verticalLine ].
 	b build.
 	
 	self assert: b view numberOfEdges equals: 1.
-	self assert: b view edges anyOne trachelShape from equals: (8.0 @ 7.5).
-	self assert: b view edges anyOne trachelShape to equals: (8.0 @ 22.5).
+	self assert: b view geomEdges anyOne trachelShape from equals: (8.0 @ 7.5).
+	self assert: b view geomEdges anyOne trachelShape to equals: (8.0 @ 22.5).
 ]
 
 { #category : #'tests - nodes' }
@@ -398,7 +398,7 @@ RTMondrianTest >> testNoLineShape [
 
 	b := RTMondrian new.
 	b nodes: (1 to: 2).
-	b edges connectTo: 2.
+	b geomEdges connectTo: 2.
 	
 ]
 
@@ -457,10 +457,10 @@ RTMondrianTest >> testNotUseInLayoutInInner [
 	| v e1 e2 e3 e20 e21 e22 e4 e23 |
 	b nodes: #(1 20) forEach: [ :n |
 		b nodes: (n + 1 to: n + 3).
-		b edges 
+		b geomEdges 
 			connectTo: [ :nn | nn + 2 ].
 		
-		b edges 
+		b geomEdges 
 			notUseInLayout;
 			connectTo: [ :nn | nn + 1 ].
 		b layout tree.
@@ -621,10 +621,10 @@ RTMondrianTest >> testSourceConnectFromAllTo [
 
 	b nodes: (1 to: 2) forEach: [ :each |
 		b node: each * 10 ].
-	b edges source: (Array with: (Array with: 10) -> 20) connectFromAll: #key to: #value.
+	b geomEdges source: (Array with: (Array with: 10) -> 20) connectFromAll: #key to: #value.
 	b build.
 	
-	self assert: b view edges size equals: 1
+	self assert: b view geomEdges size equals: 1
 ]
 
 { #category : #'tests - source' }
@@ -632,10 +632,10 @@ RTMondrianTest >> testSourceConnectFromTo [
 
 	b nodes: (1 to: 2) forEach: [ :each |
 		b node: each * 10 ].
-	b edges source: (Array with: 10 -> 20) connectFrom: #key to: #value.
+	b geomEdges source: (Array with: 10 -> 20) connectFrom: #key to: #value.
 	b build.
 	
-	self assert: b view edges size equals: 1
+	self assert: b view geomEdges size equals: 1
 ]
 
 { #category : #'tests - source' }
@@ -643,10 +643,10 @@ RTMondrianTest >> testSourceConnectFromToAll [
 
 	b nodes: (1 to: 2) forEach: [ :each |
 		b node: each * 10 ].
-	b edges source: (Array with: 10 -> (Array with: 20)) connectFrom: #key toAll: #value.
+	b geomEdges source: (Array with: 10 -> (Array with: 20)) connectFrom: #key toAll: #value.
 	b build.
 	
-	self assert: b view edges size equals: 1
+	self assert: b view geomEdges size equals: 1
 ]
 
 { #category : #'tests - source' }
@@ -664,7 +664,7 @@ RTMondrianTest >> testSourceError [
 	b nodes: ((values collect: #key) , (values collect: #value)) asSet.
 	b shape line color: Color red.
 	self
-		should: [ b edges source: self connectFrom: #key to: #value ]
+		should: [ b geomEdges source: self connectFrom: #key to: #value ]
 		raise: AssertionFailure
 ]
 
@@ -674,7 +674,7 @@ RTMondrianTest >> testUseAssociation [
 	| result |
 	b := RTMondrian new.
 	b nodes: #(1 2).
-	result := b edges useAssociation: 1 -> 2.
+	result := b geomEdges useAssociation: 1 -> 2.
 	b build.
 	
 	self assert: b view numberOfEdges equals: 1.
@@ -687,7 +687,7 @@ RTMondrianTest >> testUseAssociation2 [
 	| result |
 	b := RTMondrian new.
 	b nodes: #(1 2).
-	result := b edges useAssociation: 1 -> 10.
+	result := b geomEdges useAssociation: 1 -> 10.
 	b build.
 	
 	self assert: b view numberOfEdges equals: 0.
@@ -699,7 +699,7 @@ RTMondrianTest >> testUseAssociationsWithError [
 
 	b := RTMondrian new.
 	b nodes: #(1 2 3).
-	b edges
+	b geomEdges
 		useAssociation: 1 -> 5.
 	b build.
 	

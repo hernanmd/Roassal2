@@ -19,7 +19,7 @@ RTDominanceTreeLayoutTest >> testDoNotAttachPointStraight [
 	    doNotAttachPoint;
 	    on: bs.
 
-	self assert: v edges anyOne shape attachPoint class equals: RTBorderAttachPoint.
+	self assert: v geomEdges anyOne shape attachPoint class equals: RTBorderAttachPoint.
 ]
 
 { #category : #'tests - reversed' }
@@ -38,7 +38,7 @@ RTDominanceTreeLayoutTest >> testDoNotAttachPointStraightVerticallyReversed [
 		 verticallyReverse;
 	    on: bs.
 
-	self assert: v edges anyOne shape attachPoint class equals: RTBorderAttachPoint.
+	self assert: v geomEdges anyOne shape attachPoint class equals: RTBorderAttachPoint.
 ]
 
 { #category : #'tests - reversed' }

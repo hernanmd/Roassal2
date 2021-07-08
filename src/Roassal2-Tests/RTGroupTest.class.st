@@ -96,7 +96,7 @@ RTGroupTest >> testDeepCopy [
 	| b g deepCopy edge copyEdge |
 	b := RTMondrian new.
 	b nodes: (1 to: 10).
-	b edges connectFrom: [ :v | v // 2 ].
+	b geomEdges connectFrom: [ :v | v // 2 ].
 	b layout tree.
 	b build.
 	
@@ -246,7 +246,7 @@ RTGroupTest >> testShallowCopy [
 	| b g shallowCopy |
 	b := RTMondrian new.
 	b nodes: (1 to: 10).
-	b edges connectFrom: [ :v | v // 2 ].
+	b geomEdges connectFrom: [ :v | v // 2 ].
 	b layout tree.
 	b build.
 	

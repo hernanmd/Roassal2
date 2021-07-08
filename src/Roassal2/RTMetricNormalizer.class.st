@@ -120,16 +120,6 @@ RTMetricNormalizer >> distinctColorUsing: aBlockOrSymbol colorPalette: someColor
 ]
 
 { #category : #'public normalize line width' }
-RTMetricNormalizer >> edges [
-	edges ifNotNil: [ ^ edges ].
-	
-	edges := Set new.
-	elements do: [ :el | edges addAll: el connectedEdges ]. 
-	edges := edges asArray.
-	^ edges
-]
-
-{ #category : #'public normalize line width' }
 RTMetricNormalizer >> edges: someEdges [
 	"Set the edges to take into account"
 	edges := someEdges.
@@ -152,6 +142,16 @@ RTMetricNormalizer >> fastSmoothTranslation [
 	translator := RTSmoothLayoutTranslator new nbCycles: 0.5; yourself
 ]
 
+{ #category : #'public normalize line width' }
+RTMetricNormalizer >> geomEdges [
+	edges ifNotNil: [ ^ edges ].
+	
+	edges := Set new.
+	elements do: [ :el | edges addAll: el connectedEdges ]. 
+	edges := edges asArray.
+	^ edges
+]
+
 { #category : #utility }
 RTMetricNormalizer >> getElementNormalizedValues: metricBlock min: min max: max minValue: minValue maxValue: maxValue using: transformation [
 	"aBlock is evaluated on each node model"
@@ -172,9 +172,9 @@ RTMetricNormalizer >> getNormalizedForLineWidthValues: metricBlock min: min max:
 
 	self checkNotEmpty.
 	(maxValue = minValue) ifTrue: [ 
-		^ self edges collect: [ :edge | min ] ].
+		^ self geomEdges collect: [ :edge | min ] ].
 	
- 	^ self edges collect: [ :edge | 
+ 	^ self geomEdges collect: [ :edge | 
 			| tt t |
 			t := transformation rtValue: (metricBlock value: edge from model value: edge to model).
 			tt := min + ((max - min) * ( (t - minValue) / (maxValue - minValue))) asFloat ]
@@ -618,7 +618,7 @@ RTMetricNormalizer >> normalizeLineWidth: metricBlock min: min max: max minValue
 							
 	"Hack not really nice"
 	block := [ :anEdge | anEdge attributes at: #width ].
-	self edges with: values do: [ :edge :aValue | 
+	self geomEdges with: values do: [ :edge :aValue | 
 		edge shape widthElement: block.
 		edge attributeAt: #width put: aValue.
 "		edge updateShape."
@@ -634,11 +634,11 @@ RTMetricNormalizer >> normalizeLineWidth: metricBlock min: min max: max using: t
 	self checkNotEmpty.
 	
 	"We get the min and the max of the metric for all the edges"
-	self edges ifEmpty: [ ^ self ].
-	e := self edges anyOne.
+	self geomEdges ifEmpty: [ ^ self ].
+	e := self geomEdges anyOne.
 	minValue := transformation rtValue: (metricBlock value: e from model value: e to model).
 	maxValue := minValue.
-	self edges do: [ :edge | 
+	self geomEdges do: [ :edge | 
 		| t |  
 		t := transformation rtValue: (metricBlock value: edge from model value: edge to model).
 		minValue := minValue min: t.
@@ -711,7 +711,7 @@ b
 
 	| metricBlock d fromElements |
 	d := Dictionary new.
-	fromElements := self edges collect: [ :edge | edge model key ] as: Set.
+	fromElements := self geomEdges collect: [ :edge | edge model key ] as: Set.
 	fromElements do: [ :aFromElement |
 		| t |
 		t := (oneArgMetricBlock rtValue: aFromElement) groupedBy: #yourself.

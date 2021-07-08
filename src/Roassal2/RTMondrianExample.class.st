@@ -39,7 +39,7 @@ b shape circle size: 15;
 	if: [ :value | toBeRed includes: value ] fillColor: Color red.
 
 b nodes: (1 to: 100).
-b edges
+b geomEdges
 	moveBehind;
 	connectToAll: [ :v | 
 		v \\ 20 ~~ 0 
@@ -425,10 +425,10 @@ b := RTMondrian new.
 
 b shape circle color: (Color red alpha: 0.4).
 b nodes: Collection withAllSubclasses.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 
 b shape bezierLineFollowing: #superclass; color: (Color blue alpha: 0.1).
-b edges
+b geomEdges
 	notUseInLayout;
 	connectToAll: #dependentClasses.
 
@@ -457,11 +457,11 @@ classes := RTShape withAllSubclasses, TRShape withAllSubclasses.
 b := RTMondrian new.
 b shape circle.
 b nodes: classes.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 
 b shape bezierLineFollowing: #superclass;
 	 color: (Color blue alpha: 0.2).
-b edges notUseInLayout; connectToAll: #dependentClasses.
+b geomEdges notUseInLayout; connectToAll: #dependentClasses.
 b normalizer
 	normalizeSize: #numberOfMethods using: #sqrt;
 	normalizeColor: #numberOfMethods using: (Array with: Color green with: Color red) using: #sqrt.
@@ -657,7 +657,7 @@ b nodes: RTObject withAllSubclasses.
 
 b shape line color: (Color gray alpha: 0.2).
 
-b edges
+b geomEdges
 	connectToAll: #dependentClasses.
 
 b normalizer
@@ -919,7 +919,7 @@ b shape circle.
 b nodes: RTObject withAllSubclasses.
 
 b shape line color: (Color blue alpha: 0.4).
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 
 b normalizer
 	objects: RTObject withAllSubclasses;
@@ -949,7 +949,7 @@ b nodes: RTObject withAllSubclasses.
 b shape line
 	color: (Color gray alpha: 0.1)";
 	if: [ :f :t | f inheritsFrom: RTLayout ] fillColor: (Color green alpha: 0.2)".
-b edges
+b geomEdges
 	notUseInLayout;
 	connectToAll: #dependentClasses.
 
@@ -1296,7 +1296,7 @@ b shape circle.
 b nodes: ((RTObject withAllSubclasses, TRObject withAllSubclasses)).
 
 b shape line color: (Color gray alpha: 0.2).
-b edges 
+b geomEdges 
 	moveBehind;
 	connectToAll: #dependentClasses.
 b layout forceWithCharge: -80.
@@ -1980,7 +1980,7 @@ RTMondrianExample >> exampleColoredNodes [
 				if: [:cls | '*Layout*' match: cls name ] color: Color red;
 				if: [:cls | '*Builder*' match: cls name ] color: Color green.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 	^ b view
@@ -2029,13 +2029,13 @@ b shape rectangle
 	withTextAbove: #name.
 b nodes: Collection withAllSubclasses forEach: [ :cls |
 	b nodes: cls rtmethods.
-	b edges connectToAll: #dependentMethods.
+	b geomEdges connectToAll: #dependentMethods.
 	b layout 
 		ifElement: #isConnected then: RTTreeLayout new;
 		else: RTGridLayout new.
  ].
 
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 b layout tree.
 b build.
 ^ b view
@@ -2100,7 +2100,7 @@ RTMondrianExample >> exampleForce [
 	b nodes: (RTShape withAllSubclasses).
 
 	b shape arrowedLine color: Color black; withShorterDistanceAttachPoint.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout force charge: -500; nbIterations: 50.
 
 	b build.
@@ -2119,10 +2119,10 @@ RTMondrianExample >> exampleForceAndNested [
 		b shape rectangle color: Color blue.
 		b nodes: cls rtmethods.
 		b shape line color: Color black.
-		b edges connectToAll: #dependentMethods.
+		b geomEdges connectToAll: #dependentMethods.
 		b layout force.
 	].
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 	
@@ -2242,7 +2242,7 @@ b shape ellipse size: 20;
 	if: [ :value | values includes: value ]  fillColor: Color red.
 b nodes: (1 to: 300).
 "b shape line color: Color white."
-b edges 
+b geomEdges 
 	moveBehind;
 	connectToAll: [ :value | 
 	(value \\ 30 = 0) 
@@ -2319,7 +2319,7 @@ b := RTMondrian new.
 b shape circle size: 10; color: Color red.
 b nodes: (1 to: 20).
 
-edges := b edges moveBehind; connectFrom: [ :v | v // 2 ].
+edges := b geomEdges moveBehind; connectFrom: [ :v | v // 2 ].
 edges @ RTHighlightable.
 edges @ (RTPopup text: [ :association | 'An edge from ', association key asString, ' to ', association value asString ]).
 b layout cluster.
@@ -2442,7 +2442,7 @@ classes := (TRPlatform current packageNamed: 'Roassal2') definedClasses.
 b := RTMondrian new.
 b shape circle size: 5.
 b nodes: classes.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 
 b layout
 		for: [ :c | (classes intersection: (Array with: c superclass), c subclasses) notEmpty ] use: RTTreeLayout new;
@@ -2802,12 +2802,12 @@ RTMondrianExample >> exampleNumbersAndBeziers [
 b := RTMondrian new.
 
 b nodes: (1 to: 300).
-b edges connectFrom: [ :value | value // 2 ].
+b geomEdges connectFrom: [ :value | value // 2 ].
 
 b shape 
 	bezierLineFollowing: [ :value | value // 2 ];
 	color: Color blue trans.
-b edges 
+b geomEdges 
 	notUseInLayout;
 	connectTo: [ :value | (value / 10) asInteger + (value \\ 10) ].
 
@@ -3080,7 +3080,7 @@ classes := RTLayout withAllSubclasses, RTBuilder withAllSubclasses, RTShape with
 b := RTMondrian new.
 b shape circle size: 5.
 b nodes: classes.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 
 b normalizer
 	objects: classes;
@@ -3151,7 +3151,7 @@ RTMondrianExample >> exampleRadialTree [
 	b := RTMondrian new.
 	b shape circle size: 10.
 	b nodes: (1 to: 100).
-	b edges connectFrom: [ :v | v // 2 ].
+	b geomEdges connectFrom: [ :v | v // 2 ].
 	b layout radialTree.
 	b build.
 	^ b view
@@ -3238,7 +3238,7 @@ b shape circle color: (Color black alpha: 0.5).
 b nodes: nodes.
 
 b shape line color: (Color gray alpha: 0.3).
-b edges
+b geomEdges
 	source: edges connectFrom: #key to: #value.
 
 b layout force.
@@ -3288,9 +3288,9 @@ b := RTMondrian new.
 	color: Color transparent;
 	size: 0.
 els := (b nodes: points).
-(b edges shape line)
+(b geomEdges shape line)
 	color: Color black.
-edges := b edges connectToAll: [ :src | points copyUpTo: src ].
+edges := b geomEdges connectToAll: [ :src | points copyUpTo: src ].
 
 b build.
 els do: [ :el |
@@ -3611,7 +3611,7 @@ RTMondrianExample >> exampleSimpleTree [
 	b := RTMondrian new.
 	b shape rectangle size: 10.
 	b nodes: (1 to: 100).
-	b edges connectFrom: [ :v | v // 2 ] to: #yourself.
+	b geomEdges connectFrom: [ :v | v // 2 ] to: #yourself.
 	b layout tree.
 	b build.
 	^ b view
@@ -3657,7 +3657,7 @@ RTMondrianExample >> exampleSimpleTreeLayout [
 	b := RTMondrian new.
 	b shape rectangle size: 10; borderColor: Color black.
 	b nodes: (1 to: 100).
-	b edges connectFrom: [ :v | v // 2 ].
+	b geomEdges connectFrom: [ :v | v // 2 ].
 	b layout tree.
 	b build.
 	^ b view
@@ -3752,7 +3752,7 @@ RTMondrianExample >> exampleSystemComplexity [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 	^ b view
@@ -3769,7 +3769,7 @@ b shape rectangle
 
 b nodes: RTObject withAllSubclasses.
 
-b edges 
+b geomEdges 
 	connectToAll: #subclasses.
 
 b normalizer
@@ -3884,12 +3884,12 @@ b shape circle
 b nodes: TRShape withAllSubclasses, RTShape withAllSubclasses.
 
 b shape line.
-b edges
+b geomEdges
 	connectFrom: #superclass.
 
 b shape bezierLineFollowing: #superclass; color: (Color blue alpha: 0.2).
 
-b edges
+b geomEdges
 	objects: TRShape withAllSubclasses, RTShape withAllSubclasses;
 	notUseInLayout;
 	connectToAll: #dependentClasses.
@@ -3948,7 +3948,7 @@ RTMondrianExample >> examplenestedTree [
 	
 	b nodes: (1 to: 100 by: 10) forEach: [ :each |
 		b nodes: (1 to: each).
-		b edges connectFrom: [ :v | v // 2 ].
+		b geomEdges connectFrom: [ :v | v // 2 ].
 		b layout cluster.
 	].
 	b layout grid.

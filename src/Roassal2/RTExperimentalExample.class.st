@@ -725,7 +725,7 @@ RTExperimentalExample >> exampleClusterBezierAndSlider [
 | b lb |
 b := RTBundleBuilder new.
 b from: (Array with: TRObject with: TRTest) using: #subclasses. 
-b edges shape line color: Color black.
+b geomEdges shape line color: Color black.
 b bezier color: (Color blue alpha: 0.5).
 b useBezierlineWith: #dependentClasses.
 b build.
@@ -2029,7 +2029,7 @@ color := [:n | | k i |
 sankey := RTSankeyBuilder new.
 form := [ :n | | e |
 	e := sankey view elements elementFromModel: n.
-	e ifNil: [ e:=  sankey view edges elementFromModel: n ].
+	e ifNil: [ e:=  sankey view geomEdges elementFromModel: n ].
 	(e attributes at: #value) asString, ' TWh'. ].
 
 sankey shape width: 15.
@@ -3236,7 +3236,7 @@ edges do: [ :edge| | from to line |
 	e := RTEdge on: edge from: from to: to.
 	e+line.
 	v add: e ].
-v edges do: #pushBack.
+v geomEdges do: #pushBack.
 
 elements first translateTo: 300@260.
 elements second translateTo: 170@150.

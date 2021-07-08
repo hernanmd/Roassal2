@@ -275,7 +275,7 @@ RTBundleExample >> exampleClusterBezierAndSlider [
 | b lb |
 b := RTBundleBuilder new.
 b from: (Array with: TRObject with: TRTest) using: #subclasses. 
-b edges shape line color: Color black.
+b geomEdges shape line color: Color black.
 b bezier color: (Color blue alpha: 0.5).
 b useBezierlineWith: #dependentClasses.
 b build.

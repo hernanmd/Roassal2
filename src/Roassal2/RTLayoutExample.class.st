@@ -215,13 +215,13 @@ b shape rectangle
 	withTextAbove: #name.
 b nodes: Collection withAllSubclasses forEach: [ :cls |
 	b nodes: cls rtmethods.
-	b edges connectToAll: #dependentMethods.
+	b geomEdges connectToAll: #dependentMethods.
 	b layout 
 		ifElement: #isConnected then: RTTreeLayout new;
 		else: RTGridLayout new.
  ].
 
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 b layout tree.
 b build.
 ^ b view

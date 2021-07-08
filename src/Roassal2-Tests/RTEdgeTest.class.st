@@ -95,7 +95,7 @@ RTEdgeTest >> testBuildingFromAssociations [
 	
 	self assert: view numberOfElements = 2.
 	self assert: view numberOfEdges = 1.
-	edge := view edges last.
+	edge := view geomEdges last.
 	self assert: edge from == view elements first.
 	self assert: edge to == view elements second.
 	
@@ -117,7 +117,7 @@ RTEdgeTest >> testBuildingFromObjects [
 		connectFrom: #yourself to: #superclass.
 	self assert: view numberOfElements = 2.
 	self assert: view numberOfEdges = 1.
-	edge := view edges last.
+	edge := view geomEdges last.
 	self assert: edge from == elements first.
 	self assert: edge to == elements second.
 	self assert: edge model notNil.

@@ -14,7 +14,7 @@ RTSVGExporterExample >> exampleDependencyAnalyzerBuilder [
 	| b |	
 	b := RTMondrian new.
 	b nodes: Collection withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	^ b view.
 

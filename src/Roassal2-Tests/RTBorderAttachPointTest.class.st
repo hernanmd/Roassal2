@@ -17,9 +17,9 @@ RTBorderAttachPointTest >> setUp [
 { #category : #tests }
 RTBorderAttachPointTest >> testBoxBorderPoint [
 	| from to via |
-	from := GRectangle origin: 0 @ 0 corner: 20 @ 10.
-	to := GRectangle origin: 10 @ 30 corner: 20 @ 40.
-	via := GLineSegment from: from center to: to center.
+	from := GeomRectangle origin: 0 @ 0 corner: 20 @ 10.
+	to := GeomRectangle origin: 10 @ 30 corner: 20 @ 40.
+	via := GeomLineSegment from: from center to: to center.
 	self assert: (attachPoint borderPointFrom: from to: to via: via) equals: (65 / 6) @ 10.
 	self assert: (attachPoint borderPointFrom: to to: from via: via) equals: (85 / 6) @ 30
 ]
@@ -64,7 +64,7 @@ RTBorderAttachPointTest >> testGeometryBox [
 	el translateTo: 20 @ 30.
 	self
 		assert: (attachPoint geometryFor: el)
-		equals: (GRectangle origin: 10 @ 15 corner: 30 @ 45)
+		equals: (GeomRectangle origin: 10 @ 15 corner: 30 @ 45)
 ]
 
 { #category : #tests }
@@ -74,7 +74,7 @@ RTBorderAttachPointTest >> testGeometryEllipse [
 		height: 30;
 		element.
 	el translateTo: 20 @ 30.
-	self assert: (attachPoint geometryFor: el) equals: (GEllipse center: 20 @ 30 a: 10 b: 15)
+	self assert: (attachPoint geometryFor: el) equals: (GeomEllipse center: 20 @ 30 a: 10 b: 15)
 ]
 
 { #category : #tests }
@@ -87,7 +87,7 @@ RTBorderAttachPointTest >> testGeometryRoundedBox [
 	self
 		assert: (attachPoint geometryFor: el)
 		equals:
-			(GRoundedRectangle
-				rectangle: (GRectangle origin: -40 @ -20 corner: 40 @ 20)
+			(GeomRoundedRectangle
+				rectangle: (GeomRectangle origin: -40 @ -20 corner: 40 @ 20)
 				borderRadius: 10)
 ]

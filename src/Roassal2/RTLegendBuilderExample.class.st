@@ -40,7 +40,7 @@ RTLegendBuilderExample >> exampleBackgroundNPosition [
 		width: [ :c | c numberOfVariables * 5 ];
 		height: #numberOfMethods.
 	b nodes: RTShape withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b normalizer
 		normalizeColor: #numberOfLinesOfCode using: (Array with: Color black with: Color red ) using: [:vv | (vv + 1) ln * 5 ] .
@@ -118,7 +118,7 @@ RTLegendBuilderExample >> exampleBelow [
 		width: [ :c | c numberOfVariables * 5 ];
 		height: #numberOfMethods.
 	b nodes: RTShape withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b normalizer
 		normalizeColor: #numberOfLinesOfCode using: (Array with: Color black with: Color red ) using: [:vv | (vv + 1) ln * 5 ] .
@@ -188,7 +188,7 @@ RTLegendBuilderExample >> exampleOnDemand [
 		width: [ :c | c numberOfVariables * 5 ];
 		height: #numberOfMethods.
 	b nodes: RTShape withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b normalizer
 		normalizeColor: #numberOfLinesOfCode using: (Array with: Color black with: Color red).

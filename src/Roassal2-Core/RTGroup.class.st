@@ -132,11 +132,6 @@ RTGroup >> deepCopy [
 ]
 
 { #category : #accessing }
-RTGroup >> edges [
-	^ self select: [ :o | o class == RTEdge ]
-]
-
-{ #category : #accessing }
 RTGroup >> elementFromModel: anObject [
 	"Return an element that corresponds to the object provided as parameter. If none is found, then return nil"
 	
@@ -230,6 +225,11 @@ RTGroup >> extent: newExtentT [
 	
 	
 	
+]
+
+{ #category : #accessing }
+RTGroup >> geomEdges [
+	^ self select: [ :o | o class == RTEdge ]
 ]
 
 { #category : #attributes }

@@ -174,13 +174,13 @@ RTAbstractGraphLayout >> greedyCycleRemoval: aCollection [
 			sl addLast: vertex.
 			g remove: vertex].	"Remove all leftward edges"
 	s := sl , sr.
-	self edges notNil
+	self geomEdges notNil
 		ifTrue: 
-			[ self edges copy
+			[ self geomEdges copy
 				do:
 					[:edge | 
 					(s indexOf: edge from) > (s indexOf: edge to)
-						ifTrue: [self edges remove: edge ] ] ].	
+						ifTrue: [self geomEdges remove: edge ] ] ].	
 	"Reset the cache"
 	self clear
 ]

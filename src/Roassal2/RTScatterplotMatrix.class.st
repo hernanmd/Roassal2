@@ -70,7 +70,7 @@ RTScatterplotMatrix >> boxes [
 RTScatterplotMatrix >> createAxisIfNecessary: aView [
 	self createAxisXIfNecessary: aView.
 	self createAxisYIfNecessary: aView.
-	aView edges do: #pushBack 
+	aView geomEdges do: #pushBack 
 ]
 
 { #category : #helpers }

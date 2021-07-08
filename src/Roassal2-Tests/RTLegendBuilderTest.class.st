@@ -130,7 +130,7 @@ RTLegendBuilderTest >> testPolymorphicViewArrows [
 	
 	view := lb view.
 	self assert: (view elements select: [ :el | el trachelShape isNotFixed ]) isEmpty.
-	self assert: (view edges select: [ :el | el trachelShape isNotFixed ]) isEmpty.
+	self assert: (view geomEdges select: [ :el | el trachelShape isNotFixed ]) isEmpty.
 	
 	canvas := view canvas.
 	self assert: canvas numberOfShapes equals: 0

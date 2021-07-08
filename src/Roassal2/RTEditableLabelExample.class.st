@@ -20,7 +20,7 @@ RTEditableLabelExample >> editableSearchField [
 b := RTMondrian new.
 
 b nodes: Collection withAllSubclasses.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 b layout tree.
 lbl := RTEditableLabel new text: 'Enter a part of the name of the class'.
 searchField := lbl element.

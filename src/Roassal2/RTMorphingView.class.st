@@ -141,10 +141,10 @@ RTMorphingView >> initializeElement: aView [
 	"Adding edges"	
 	edges := RTEdgeBuilder new
 						view: aView;
-						useAssociations: (referenceView edges collect: #model).
+						useAssociations: (referenceView geomEdges collect: #model).
 		
 	"Updating color and width of edges"
-	aView edges do: [ :edge | | referenceEdge |
+	aView geomEdges do: [ :edge | | referenceEdge |
 		referenceEdge := referenceView edgeFromModel: edge model. 
 		edge @ RTMakeEdgeNotUpdatable.
 		edge trachelShape color: referenceEdge trachelShape strokePaint.
@@ -170,7 +170,7 @@ RTMorphingView >> initializeElementOLD: aView [
 	"Removing old elements and edges that are not in the new view"
 	aView
 		removeElements: (aView elementsFromModels: (allModels difference: referenceModels)).
-	aView removeEdges: (aView edges difference: referenceView edges).
+	aView removeEdges: (aView geomEdges difference: referenceView geomEdges).
 
 	"Adding elements that are not in the old view"
 	aView addAll: (referenceView elements difference: referenceElements).
@@ -179,8 +179,8 @@ RTMorphingView >> initializeElementOLD: aView [
 	RTEdgeBuilder new
 		view: aView;
 		useAssociations:
-			((referenceView edges collect: #model)
-				difference: (aView edges collect: #model)).
+			((referenceView geomEdges collect: #model)
+				difference: (aView geomEdges collect: #model)).
 	(aView elementsFromModels: referenceModels)
 		with: referenceElements
 		do: [ :e1 :e2 | 
@@ -202,7 +202,7 @@ RTMorphingView >> morphIntoView: aRTView [
 RTMorphingView >> pushElementsToFrontAndEdgesToBack [
 
 	afterAllTranslationsBlocks 
-		add: [ :view | view edges do: #pushBack ];
+		add: [ :view | view geomEdges do: #pushBack ];
 		add: [ :view | view elements do: #pushFront ]
 		
 ]

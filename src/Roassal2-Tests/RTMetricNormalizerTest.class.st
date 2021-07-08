@@ -273,7 +273,7 @@ RTMetricNormalizerTest >> testEdgesWidth01 [
 	mn elements: v elements.
 	mn normalizeLineWidthBasedOnOccurences: [ :aNumber | rel at: aNumber ].
 	
-	v edges do: #updateShape.
+	v geomEdges do: #updateShape.
 	"v open delete."
 	
 	self assert: v numberOfEdges equals: 3.
@@ -311,7 +311,7 @@ RTMetricNormalizerTest >> testEdgesWidth02 [
 	as add: 3 -> 1.
 	eb useAssociations: as.
 	
-	self assert: v edges first model equals: 1->2.
+	self assert: v geomEdges first model equals: 1->2.
 	
 	rel := Dictionary new.
 	rel at: 1 put: #(2 3 3).
@@ -321,10 +321,10 @@ RTMetricNormalizerTest >> testEdgesWidth02 [
 	mn elements: v elements.
 	mn normalizeLineWidthBasedOnOccurences: [ :aNumber | rel at: aNumber ].
 	
-	v edges do: #updateShape.
+	v geomEdges do: #updateShape.
 	"v open delete."
 	
-	self assert: v edges first model equals: 1->2.
+	self assert: v geomEdges first model equals: 1->2.
 	
 ]
 
@@ -334,13 +334,13 @@ RTMetricNormalizerTest >> testLineWidthAndArrowedLine [
 	b := RTMondrian new.
 	b nodes: #(1 2 3).
 	b shape shape: RTArrowedLine new.
-	edgeElements := b edges useAssociations: (Array with: 1 -> 2 with: 1 -> 3).
+	edgeElements := b geomEdges useAssociations: (Array with: 1 -> 2 with: 1 -> 3).
 	b normalizer
 		edges: edgeElements;
 		normalizeLineWidth: [ :from :to | from + to ] min: 1 max: 10.
 	b layout horizontalLine.
 	
-	b view edges do: #updateShape.
+	b view geomEdges do: #updateShape.
 
 	
 	self assert: edgeElements second trachelShape shapes first width equals: 10.
@@ -357,7 +357,7 @@ b := RTMondrian new.
 b shape circle.    
 b nodes: data.
 
-edgeElements := b edges connectFrom: [ :c | c superclass ].
+edgeElements := b geomEdges connectFrom: [ :c | c superclass ].
 
 b normalizer
     edges: edgeElements;

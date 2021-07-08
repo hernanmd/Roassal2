@@ -61,7 +61,7 @@ RTSelectionBox >> addBox: aColor [
 RTSelectionBox >> initializeElement: view [
 	| actions |
 	aView := view.
-	edges := aView edges.
+	edges := aView geomEdges.
 	edges do: #remove.
 	actions := Array 
 		with: 'Add box from and to'-> [ self addBox trachelShape condition: [ :rec :ed| 

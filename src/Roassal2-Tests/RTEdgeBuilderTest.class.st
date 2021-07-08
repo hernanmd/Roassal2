@@ -26,7 +26,7 @@ RTEdgeBuilderTest >> testAllowRepetitionAndUseAssociations [
 	b shape line
 		color: Color red trans;
 		withVerticallAttachPoint.
-	b edges noRepetition; useAssociations: (Array with: 1 -> 2 with: 2 -> 3 with: 1 -> 2).
+	b geomEdges noRepetition; useAssociations: (Array with: 1 -> 2 with: 2 -> 3 with: 1 -> 2).
 	b layout grid.
 	b build.
 	self assert: b view numberOfEdges equals: 2
@@ -99,7 +99,7 @@ RTEdgeBuilderTest >> testConnectFrom [
 	
 	self assert: view numberOfEdges equals: 1.
 	
-	e := view edges anyOne.
+	e := view geomEdges anyOne.
 	self assert: e from model equals: 1.
 	self assert: e to model equals: 2.
 ]
@@ -113,7 +113,7 @@ RTEdgeBuilderTest >> testConnectTo [
 	
 	self assert: view numberOfEdges equals: 1.
 	
-	e := view edges anyOne.
+	e := view geomEdges anyOne.
 	self assert: e from model equals: 2.
 	self assert: e to model equals: 1.
 ]
@@ -127,8 +127,8 @@ RTEdgeBuilderTest >> testConnectToAll [
 	
 	self assert: view numberOfEdges equals: 3.
 	 
-	eFrom := (view edges collect: [ :edge | edge from model ]) sorted asArray.
-	eTo := (view edges collect: [ :edge | edge to model ]) sorted asArray.
+	eFrom := (view geomEdges collect: [ :edge | edge from model ]) sorted asArray.
+	eTo := (view geomEdges collect: [ :edge | edge to model ]) sorted asArray.
 	self assert: eFrom equals: #(2 3 3).
 	self assert: eTo equals: #(1 1 2).
 ]
@@ -176,7 +176,7 @@ RTEdgeBuilderTest >> testFromAll [
 	es := (RTEllipse new size: 20) elementsOn: (1 to: 2).
 	v addAll: es.
 	
-	self assert: v edges size equals: 0.
+	self assert: v geomEdges size equals: 0.
 	RTEdgeBuilder new
 		view: v;
 		objects: (1 to: 2);
@@ -185,9 +185,9 @@ RTEdgeBuilderTest >> testFromAll [
 	es @ RTPopup.
 	RTTreeLayout on: es.
 
-	self assert: v edges size equals: 1.
-	self assert: v edges first from position equals: (15.0@15.0).
-	self assert: v edges first to position equals: (15.0@55.0).
+	self assert: v geomEdges size equals: 1.
+	self assert: v geomEdges first from position equals: (15.0@15.0).
+	self assert: v geomEdges first to position equals: (15.0@55.0).
 ]
 
 { #category : #tests }
@@ -203,7 +203,7 @@ RTEdgeBuilderTest >> testFromObjects [
 	b fromObjects: #(1 2).
 	b connectFrom: #yourself to: 10.
 	self assert: view numberOfEdges equals: 2.
-	edges := view edges.
+	edges := view geomEdges.
 	self assert: edges first from model equals: 1.
 	self assert: edges first to model equals: 10.
 
@@ -279,7 +279,7 @@ RTEdgeBuilderTest >> testObjectFrom [
 	
 	self assert: view numberOfEdges equals: 1.
 	
-	e := view edges anyOne.
+	e := view geomEdges anyOne.
 	self assert: e from model equals: 1.
 	self assert: e to model equals: 2.
 ]
@@ -292,7 +292,7 @@ RTEdgeBuilderTest >> testObjectTo [
 	
 	self assert: view numberOfEdges equals: 1.
 	
-	e := view edges anyOne.
+	e := view geomEdges anyOne.
 	self assert: e from model equals: 2.
 	self assert: e to model equals: 1.
 ]
@@ -349,8 +349,8 @@ RTEdgeBuilderTest >> testShouldAllowBidirection [
 	self assert: (b shouldCreateEdgeFrom: elements first to: elements second).
 	
 	self assert: view numberOfEdges equals: 1.
-	self assert: view edges anyOne from model equals: 1.
-	self assert: view edges anyOne to model equals: 2.
+	self assert: view geomEdges anyOne from model equals: 1.
+	self assert: view geomEdges anyOne to model equals: 2.
 ]
 
 { #category : #tests }
@@ -395,7 +395,7 @@ RTEdgeBuilderTest >> testSimple3 [
 		toObjects: (1 to: 10);
 		connectFrom: #yourself to: [ :v | v + 1 ].
 	self assert: view numberOfEdges equals: 4.
-	self assert: (view edges collect: [ :e | e from model -> e to model ]) asArray equals: ((Array new: 4) at: 1 put: (1->2); at: 2 put: (2->3); at: 3 put: (3->4); at: 4 put: (6->7); yourself)
+	self assert: (view geomEdges collect: [ :e | e from model -> e to model ]) asArray equals: ((Array new: 4) at: 1 put: (1->2); at: 2 put: (2->3); at: 3 put: (3->4); at: 4 put: (6->7); yourself)
 ]
 
 { #category : #tests }
@@ -407,7 +407,7 @@ RTEdgeBuilderTest >> testSimple4 [
 		toObjects: #(1 2 3 6);
 		connectFrom: #yourself to: [ :v | v + 1 ].
 	self assert: view numberOfEdges equals: 2.
-	self assert: (view edges collect: [ :e | e from model -> e to model ]) asArray equals: ((Array new: 2) at: 1 put: (1->2); at: 2 put: (2->3); yourself)
+	self assert: (view geomEdges collect: [ :e | e from model -> e to model ]) asArray equals: ((Array new: 2) at: 1 put: (1->2); at: 2 put: (2->3); yourself)
 ]
 
 { #category : #tests }

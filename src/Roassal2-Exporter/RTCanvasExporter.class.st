@@ -71,7 +71,7 @@ RTCanvasExporter >> example01 [
 	| b view |
 	b := RTMondrian new.
 	b nodes: RTShape withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 	

@@ -86,7 +86,7 @@ RTLayoutTest >> testCluster [
 		view: view;
 		objects: Collection withAllSubclasses;
 		connectFrom: #superclass to: #yourself.
-	RTClusterLayout on: view elements edges: view edges
+	RTClusterLayout on: view elements edges: view geomEdges
 ]
 
 { #category : #tests }
@@ -170,7 +170,7 @@ RTLayoutTest >> testForceDefault [
 
 	| l |
 	l := RTForceBasedLayout new.
-	self assert: l edges isEmpty.
+	self assert: l geomEdges isEmpty.
 	self assert: l nodes isEmpty.
 ]
 
@@ -338,7 +338,7 @@ RTLayoutTest >> testRadialTreelLayout [
 		view: view;
 		objects: (1 to: 20);
 		connectFrom: [ :v | v // 2 ] to: #yourself.
-	RTRadialTreeLayout on: view elements edges: view edges.
+	RTRadialTreeLayout on: view elements edges: view geomEdges.
 	answer := OrderedCollection new.
 	answer
 		add: 202 @ 202;
@@ -426,7 +426,7 @@ RTLayoutTest >> testTreelLayout [
 		view: view;
 		objects: (1 to: 20);
 		connectFrom: [ :v | v // 2 ] to: #yourself.
-	RTTreeLayout on: view elements edges: view edges.
+	RTTreeLayout on: view elements edges: view geomEdges.
 	answer := OrderedCollection new.
 	answer
 		add: 43.5 @ (15 / 2);

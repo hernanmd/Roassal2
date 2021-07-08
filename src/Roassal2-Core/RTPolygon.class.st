@@ -221,11 +221,6 @@ RTPolygon >> updateFor: anElement trachelShape: trachelShape [
 ]
 
 { #category : #accessing }
-RTPolygon >> vertices [
-	^ vertices
-]
-
-{ #category : #accessing }
 RTPolygon >> vertices: arrayOfPoints [
 	self verticesElement: [ :e | arrayOfPoints rtValue: e model ].
 ]

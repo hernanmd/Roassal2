@@ -35,7 +35,7 @@ RTHighlightableTest >> testArrowedLine [
 				yourself).
 	RTOptimizedForceBasedLayout new on: es.
 	
-	trachelShape := v edges anyOne trachelShape.
+	trachelShape := v geomEdges anyOne trachelShape.
 	previousColor := trachelShape color.
 	head := trachelShape shapes second.
 	line := trachelShape shapes first.
@@ -213,7 +213,7 @@ RTHighlightableTest >> testPushEdgeFront [
 	b interaction highlightEdges: #dependentClasses.
 	b shape circle.
 	b nodes: (Collection withAllSubclasses).
-	b edges moveBehind; connectToAll: #dependentClasses.
+	b geomEdges moveBehind; connectToAll: #dependentClasses.
 "	b normalizer normalizeSize: #numberOfMethods; normalizeColor: #numberOfMethods."
 	b layout force.
 	b build

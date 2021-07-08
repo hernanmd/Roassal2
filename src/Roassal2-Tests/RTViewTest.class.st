@@ -312,7 +312,7 @@ RTViewTest >> testPushBackEdges [
 	RTTreeLayout on: es.
 	
 	
-	lastEdge := view edges last.
+	lastEdge := view geomEdges last.
 	self assert: (view canvas shapes indexOf: lastEdge trachelShape) equals: 18.
 	view pushBackEdges.
 	self assert: (view canvas shapes indexOf: lastEdge trachelShape) equals: 1.
@@ -333,7 +333,7 @@ RTViewTest >> testPushFrontEdges [
 	RTTreeLayout on: es.
 	
 	
-	lastEdge := view edges last.
+	lastEdge := view geomEdges last.
 	self assert: (view canvas shapes indexOf: lastEdge trachelShape) equals: 18.
 	view pushFrontEdges.
 	self assert: (view canvas shapes indexOf: lastEdge trachelShape) equals: 19.

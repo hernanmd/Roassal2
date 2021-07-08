@@ -154,7 +154,7 @@ RTOpenStreetMapExample >> exampleGraphOnLondon [
 
 	b axisX color: Color red; noTick; title: 'country'.
 	b build.
-	elementsAndEdges := b view elements, b view edges.
+	elementsAndEdges := b view elements, b view geomEdges.
 
 	"We create a white background"
 	whiteBackground := (RTRoundedBox new color: Color white trans; borderRadius: 10) element.

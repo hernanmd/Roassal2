@@ -109,7 +109,7 @@ RTGeneralExample >> beziers02 [
 		connectFrom: #superclass to: #yourself.
 
 	"A nice layout"
-	RTClusterLayout on: v elements edges: v edges.
+	RTClusterLayout on: v elements edges: v geomEdges.
 
 	"Computing dependencies"
 	dep := OrderedCollection new.
@@ -312,9 +312,9 @@ RTGeneralExample >> classHierarchy [
 		view: view;
 		objects: Collection withAllSubclasses;
 		connectFrom: #superclass to: #yourself.
-	RTTreeLayout on: view elements edges: view edges.
+	RTTreeLayout on: view elements edges: view geomEdges.
 	view @ RTDraggableView.
-	view edges do: [ :e | e trachelShape pushBack ].
+	view geomEdges do: [ :e | e trachelShape pushBack ].
 	^ view
 ]
 
@@ -336,8 +336,8 @@ RTGeneralExample >> clusterLayout [
 		view: v;
 		objects: Collection withAllSubclasses;
 		connectFrom: #superclass to: #yourself.
-	RTClusterLayout on: v elements edges: v edges.
-	v edges do: [ :e | e trachelShape pushBack ].
+	RTClusterLayout on: v elements edges: v geomEdges.
+	v geomEdges do: [ :e | e trachelShape pushBack ].
 	^ v
 ]
 
@@ -380,7 +380,7 @@ RTGeneralExample >> combiningRoassalAndMorphic [
 	container := BorderedMorph new.
 	(button := PluggableButtonMorph new)
 		label: 'I am a morph';
-		actionBlock: [ (view elements, view edges) do: [ :each | each color: Color random. each signalUpdate ] ].
+		actionBlock: [ (view elements, view geomEdges) do: [ :each | each color: Color random. each signalUpdate ] ].
 
 	es := RTBox new color: Color black; size: 50; elementsOn: #(1 2).
 	e := RTLine new color: Color black; edgeFrom: es first to: es second.
@@ -605,27 +605,6 @@ RTGeneralExample >> dynamicLabels [
 	elements @ (RTShowEdge new 
 						connectToAll: [ :value | value - 5 to: value + 5]; 
 						shape: (RTLine new color: (Color blue alpha: 0.4))).
-	^ view
-]
-
-{ #category : #shapes }
-RTGeneralExample >> edges [
-	<gtExample>
-	"
-	self new edges
-	"
-
-	| view elements |
-	view := RTView new.
-	elements := (RTBox new color: (Color purple alpha: 0.2))
-		elementsOn: Collection withAllSubclasses.
-	view addAll: elements.
-	RTEdgeBuilder new
-		view: view;
-		objects: Collection withAllSubclasses;
-		shape: (RTLine new color: (Color blue alpha: 0.2));
-		connectFrom: #yourself to: #superclass.
-	RTGridLayout on: view elements.
 	^ view
 ]
 
@@ -859,6 +838,27 @@ RTGeneralExample >> forceBasedLayout [
 	v addAnimation: (RTForceLayoutStepping new view: v).
 	v @ RTDraggableView.
 	^ v
+]
+
+{ #category : #shapes }
+RTGeneralExample >> geomEdges [
+	<gtExample>
+	"
+	self new edges
+	"
+
+	| view elements |
+	view := RTView new.
+	elements := (RTBox new color: (Color purple alpha: 0.2))
+		elementsOn: Collection withAllSubclasses.
+	view addAll: elements.
+	RTEdgeBuilder new
+		view: view;
+		objects: Collection withAllSubclasses;
+		shape: (RTLine new color: (Color blue alpha: 0.2));
+		connectFrom: #yourself to: #superclass.
+	RTGridLayout on: view elements.
+	^ view
 ]
 
 { #category : #groups }
@@ -1206,7 +1206,7 @@ RTGeneralExample >> nestedHierarchy [
 		view: view;
 		objects: (1 to: 100);
 		connectFrom: [ :v | v // 2 ] to: #yourself.
-	RTTreeLayout new on: inner edges: view edges.
+	RTTreeLayout new on: inner edges: view geomEdges.
 	RTNest new on: host nest: inner.
 	^ view
 ]
@@ -1401,8 +1401,8 @@ RTGeneralExample >> numbers [
 		objects: (1 to: 100);
 		shape: (RTLine new color: Color purple);
 		connectFrom: [ :v | v // 2 ] to: #yourself.
-	RTTreeLayout on: view elements edges: view edges.
-	view edges do: [ :e | e trachelShape pushBack ].
+	RTTreeLayout on: view elements edges: view geomEdges.
+	view geomEdges do: [ :e | e trachelShape pushBack ].
 	view @ RTDraggableView.
 	^ view
 ]
@@ -1643,7 +1643,7 @@ RTGeneralExample >> smoothLayout [
 			[ 
 			RTTreeLayout new
 				translator: translator;
-				on: v elements edges: v edges.
+				on: v elements edges: v geomEdges.
 			v canvas signalUpdate ].
 	v canvas
 		addMenu: 'treeH'
@@ -1651,7 +1651,7 @@ RTGeneralExample >> smoothLayout [
 			[ 
 			RTHorizontalTreeLayout new
 				translator: translator;
-				on: v elements edges: v edges.
+				on: v elements edges: v geomEdges.
 			v canvas signalUpdate ].
 	v canvas
 		addMenu: 'cluster'
@@ -1659,7 +1659,7 @@ RTGeneralExample >> smoothLayout [
 			[ 
 			RTClusterLayout new
 				translator: translator;
-				on: v elements edges: v edges.
+				on: v elements edges: v geomEdges.
 			v canvas signalUpdate ].
 	v canvas
 		addMenu: 'circle'
@@ -1683,7 +1683,7 @@ RTGeneralExample >> smoothLayout [
 		view: v;
 		objects: (1 to: 100);
 		connectFrom: [ :value | value // 2 ] to: #yourself.
-	RTTreeLayout new on: v elements edges: v edges.
+	RTTreeLayout new on: v elements edges: v geomEdges.
 	^ v
 ]
 

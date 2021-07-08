@@ -16,7 +16,7 @@ RTRadialTreeLayoutTest >> testOnGraph [
 	| b edges |
 	b := RTMondrian new.
 	b nodes: (0 to: 20).
-	edges := b edges
+	edges := b geomEdges
 	    moveBehind;
 	    connectFromAll: [ :v | Array with: v // 2 with: v // 3 ].
 	b layout radialTree.

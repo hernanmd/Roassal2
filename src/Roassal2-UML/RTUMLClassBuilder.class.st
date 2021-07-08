@@ -93,7 +93,7 @@ RTUMLClassBuilder >> buildEdges [
 	eb view: view.
 	eb elements: view elements.
 	
-	self edges do: [ :asso |
+	self geomEdges do: [ :asso |
 		eb shape shape: asso key.
 		asso value value: eb.
 		 ].
@@ -199,16 +199,10 @@ RTUMLClassBuilder >> createView [
 ]
 
 { #category : #edges }
-RTUMLClassBuilder >> edges [
-	edgeActions ifNil: [ edgeActions := OrderedCollection new ].
-	^ edgeActions.
-]
-
-{ #category : #edges }
 RTUMLClassBuilder >> edgesDo: aBlock [
 	| s |
 	s := self shape current copy.
-	self edges add: s->aBlock.
+	self geomEdges add: s->aBlock.
 ]
 
 { #category : #examples }
@@ -352,6 +346,12 @@ RTUMLClassBuilder >> forSelfMadeClasses [
 	self superclass: nil.
 	self methodselector: ''.
 	self attributeselector: ''
+]
+
+{ #category : #edges }
+RTUMLClassBuilder >> geomEdges [
+	edgeActions ifNil: [ edgeActions := OrderedCollection new ].
+	^ edgeActions.
 ]
 
 { #category : #layouts }

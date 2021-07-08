@@ -22,7 +22,7 @@ RTScrollBarBuilderExamples >> doubleScrollBar [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 
@@ -62,7 +62,7 @@ RTScrollBarBuilderExamples >> example1 [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 
@@ -87,7 +87,7 @@ RTScrollBarBuilderExamples >> example3 [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 
@@ -120,7 +120,7 @@ RTScrollBarBuilderExamples >> scrollsWithInteraction [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 	b view @ RTDoubleScrollBar.

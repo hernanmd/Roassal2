@@ -38,8 +38,8 @@ RTHorizontalTreeLayoutTest >> testHorizontallyReversed [
 	self assert: elements second position x > elements first position x.
 	self assert: elements second position y < elements first position y.
 	self assert: elements second position x equals: elements third position x.
-	from := v edges first trachelShape from.
-	to := v edges first trachelShape to.
+	from := v geomEdges first trachelShape from.
+	to := v geomEdges first trachelShape to.
 	self assert: from class equals: Point.
 	self assert: to class equals: Point.
 	
@@ -51,11 +51,11 @@ RTHorizontalTreeLayoutTest >> testHorizontallyReversed [
 	self assert: elements second position x equals: elements third position x.
 	
 	"ATTACHPOINT"
-	self assert: (v edges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
+	self assert: (v geomEdges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
 	
 	"ATTACHPOINT FROM AND TO"
-	self assert: (0 @ 7) equals: v edges first trachelShape to.
-	self assert: (20 @ 11) equals: v edges first trachelShape from.
+	self assert: (0 @ 7) equals: v geomEdges first trachelShape to.
+	self assert: (20 @ 11) equals: v geomEdges first trachelShape from.
 	
 
 ]
@@ -84,8 +84,8 @@ RTHorizontalTreeLayoutTest >> testVerticallyReversed [
 	edge := lineShape edgeFrom: elements first to: elements third.
 	v add: edge.
 	layout := RTHorizontalTreeLayout new.
-	self assert: (v edges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
-	self assert: (v edges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
+	self assert: (v geomEdges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
+	self assert: (v geomEdges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
 	
 	"NO REVERSE"
 	layout on: elements.
@@ -93,8 +93,8 @@ RTHorizontalTreeLayoutTest >> testVerticallyReversed [
 	self assert: elements second position y < elements first position y.
 	self assert: elements second position x equals: elements third position x.
 
-	self assert: (v edges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
-	self assert: (v edges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
+	self assert: (v geomEdges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
+	self assert: (v geomEdges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
 
 	"REVERSE"
 	layout verticallyReverse.
@@ -104,8 +104,8 @@ RTHorizontalTreeLayoutTest >> testVerticallyReversed [
 	self assert: elements second position x equals: elements third position x.
 	
 	"ATTACHPOINT"
-	self assert: (v edges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
-	self assert: (v edges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
+	self assert: (v geomEdges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
+	self assert: (v geomEdges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
 ]
 
 { #category : #'tests - reversed' }

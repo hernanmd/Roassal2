@@ -249,7 +249,7 @@ RTNestTest >> testInner [
 	edge := RTLine edgeFrom: el1 to: el2.
 	view add: host; add: el1; add: el2; add: edge.
 
-	RTTreeLayout new on: (Array with: el1 with: el2) edges: view edges.
+	RTTreeLayout new on: (Array with: el1 with: el2) edges: view geomEdges.
 	RTNest new on: host nest: (Array with: el1 with: el2).
 
 	self assert: el1 position equals: (0.5@ (-25/2)).	

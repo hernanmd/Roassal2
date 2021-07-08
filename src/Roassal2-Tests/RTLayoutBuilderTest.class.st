@@ -69,13 +69,13 @@ RTLayoutBuilderTest >> testHorizontalTreeAndAttachPoint [
 	b := RTMondrian new.
 	b shape label.
 	b nodes: (1 to: 10).
-	edges := b edges connectFrom: [ :x | x//2 ].
+	edges := b geomEdges connectFrom: [ :x | x//2 ].
 
 	b shape arrowedLine color: Color red; centeredAttachPoint.
-	b edges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
+	b geomEdges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
 
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	firstEdges := allEdges copyFrom: 1 to: (allEdges size - 2).
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 1) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ] ).
@@ -86,7 +86,7 @@ RTLayoutBuilderTest >> testHorizontalTreeAndAttachPoint [
 	b build.
 	
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 1) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTVerticalAttachPoint ] ).
 	self assert: (lastTwoEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ])
@@ -100,13 +100,13 @@ RTLayoutBuilderTest >> testHorizontalTreeAndNoAttachPoint [
 	b := RTMondrian new.
 	b shape label.
 	b nodes: (1 to: 10).
-	edges := b edges connectFrom: [ :x | x//2 ].
+	edges := b geomEdges connectFrom: [ :x | x//2 ].
 
 	b shape arrowedLine color: Color red; centeredAttachPoint.
-	b edges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
+	b geomEdges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
 
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	firstEdges := allEdges copyFrom: 1 to: (allEdges size - 3).
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 2) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ] ).
@@ -118,7 +118,7 @@ RTLayoutBuilderTest >> testHorizontalTreeAndNoAttachPoint [
 	b build.
 	
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 2) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ] ).
 	self assert: (lastTwoEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ])
@@ -158,13 +158,13 @@ RTLayoutBuilderTest >> testVerticalTreeAndAttachPoint [
 	b := RTMondrian new.
 	b shape label.
 	b nodes: (1 to: 10).
-	edges := b edges connectFrom: [ :x | x//2 ].
+	edges := b geomEdges connectFrom: [ :x | x//2 ].
 
 	b shape arrowedLine color: Color red; centeredAttachPoint.
-	b edges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
+	b geomEdges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
 
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	firstEdges := allEdges copyFrom: 1 to: (allEdges size - 2).
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 1) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ] ).
@@ -175,7 +175,7 @@ RTLayoutBuilderTest >> testVerticalTreeAndAttachPoint [
 	b build.
 	
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 1) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTVerticalAttachPoint ] ).
 	self assert: (lastTwoEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ])
@@ -189,13 +189,13 @@ RTLayoutBuilderTest >> testVerticalTreeAndNoAttachPoint [
 	b := RTMondrian new.
 	b shape label.
 	b nodes: (1 to: 10).
-	edges := b edges connectFrom: [ :x | x//2 ].
+	edges := b geomEdges connectFrom: [ :x | x//2 ].
 
 	b shape arrowedLine color: Color red; centeredAttachPoint.
-	b edges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
+	b geomEdges source: (Array with: 3->2 with: 9->7) connectFrom: #key to: #value. 
 
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	firstEdges := allEdges copyFrom: 1 to: (allEdges size - 3).
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 2) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ] ).
@@ -207,7 +207,7 @@ RTLayoutBuilderTest >> testVerticalTreeAndNoAttachPoint [
 	b build.
 	
 	"We test the attachpoints"
-	allEdges := b view edges.
+	allEdges := b view geomEdges.
 	lastTwoEdges := allEdges copyFrom: (allEdges size - 2) to: allEdges size.
 	self assert: (firstEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ] ).
 	self assert: (lastTwoEdges allSatisfy: [ :e | e shape attachPoint class == RTCenteredAttachPoint ])

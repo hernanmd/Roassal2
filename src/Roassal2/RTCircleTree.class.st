@@ -48,11 +48,11 @@ RTCircleTree class >> distanceOf: c0 and: c1 [
 
 { #category : #public }
 RTCircleTree class >> doIntersect: c0 with: c1 [
-	^ (c1 center - c0 center) magnitude < (c0 r + c1 r - self epsilon)
+	^ (c1 center - c0 center) magnitude < (c0 r + c1 r - self geomEpsilon)
 ]
 
 { #category : #public }
-RTCircleTree class >> epsilon [
+RTCircleTree class >> geomEpsilon [
 	^ 1.0e-0006
 ]
 

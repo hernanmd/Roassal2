@@ -160,7 +160,7 @@ RTComposerTest >> testLayoutOnNestingElementsAndLabeledShapes [
 		withTextAbove: #name;
 		if: [ :cls | cls numberOfMethods > 10 ] fillColor: Color red.
 	b nodes: classesToAnalyze.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b normalizer
 		normalizeSize: #numberOfLinesOfCode
 		min: 5

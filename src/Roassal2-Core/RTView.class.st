@@ -75,7 +75,7 @@ RTView >> addElement: anElement [
 RTView >> addFromView: aView [
 	"Add all the elements and edges from aView to self"
 
-	self addAll: aView elements , aView edges
+	self addAll: aView elements , aView geomEdges
 ]
 
 { #category : #menu }
@@ -129,7 +129,7 @@ RTView >> clean [
 	"Iterate over the original collections until they are empty. It's done this way because removal of one element can remove another one via TRRemoveCallback (e.g. RTViewTest>>testCleaningViewWithCallback)."
 
 	[ self elements isNotEmpty ] whileTrue: [ self elements anyOne remove ].
-	[ self edges isNotEmpty ] whileTrue: [ self edges anyOne remove ]
+	[ self geomEdges isNotEmpty ] whileTrue: [ self geomEdges anyOne remove ]
 ]
 
 { #category : #actions }
@@ -145,14 +145,6 @@ RTView >> cleanAll [
 RTView >> edgeFromModel: anObject [
 	"Return an edge that corresponds to the object provided as parameter. If none is found, then return nil"
 	^ edges detect: [ :edge | edge model = anObject ] ifNone: [ nil ]
-]
-
-{ #category : #accessing }
-RTView >> edges [
-	"
-	:: Void -> Collection
-	"
-	^ edges copy
 ]
 
 { #category : #'accessing-computed' }
@@ -185,6 +177,14 @@ RTView >> elementsFromModels: objects [
 	"Return elements that corresponds to the objects provided as parameter. If none is found, then return an empty collection"
 	^ elements elementsFromModels: objects
 
+]
+
+{ #category : #accessing }
+RTView >> geomEdges [
+	"
+	:: Void -> Collection
+	"
+	^ edges copy
 ]
 
 { #category : #initialization }
@@ -245,13 +245,13 @@ RTView >> openTitled: aTitle [
 { #category : #actions }
 RTView >> pushBackEdges [
 	"Move all the edges in the background"
-	self edges do: [ :e | e trachelShape pushBack ]
+	self geomEdges do: [ :e | e trachelShape pushBack ]
 ]
 
 { #category : #actions }
 RTView >> pushFrontEdges [
 	"Move all the edges in the front"
-	self edges do: [ :e | e trachelShape pushFront ]
+	self geomEdges do: [ :e | e trachelShape pushFront ]
 ]
 
 { #category : #'adding - removing' }

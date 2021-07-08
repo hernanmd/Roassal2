@@ -33,7 +33,7 @@ RTInteractiveComposerTest >> testBasic [
 			b := RTMondrian new.
 			b shape label text: #selector.
 			b nodes: aClass rtmethods.
-			b edges connectToAll: #dependentMethods.
+			b geomEdges connectToAll: #dependentMethods.
 			b layout grid.
 			b ].
 	window := i openOn: Collection withAllSubclasses.
@@ -62,7 +62,7 @@ RTInteractiveComposerTest >> testBasic2 [
 		do: [ :aClass | 
 			b := RTMondrian new.
 			b nodes: aClass rtmethods.
-			b edges connectToAll: #dependentMethods.
+			b geomEdges connectToAll: #dependentMethods.
 			b layout tree.
 			b normalizer normalizeSize: #numberOfLinesOfCode.
 			b ].

@@ -37,7 +37,7 @@ RTFlowerBuilder >> addOrRemove: el [
 	(el attributes includesKey: key)
 		ifTrue: [ 
 			self addChildren: el.
-			view edges pushBack.
+			view geomEdges pushBack.
 			el trachelShape strokeWidth: 1 ]
 		ifFalse: [
 			el attributes at: key put: 0. 
@@ -99,7 +99,7 @@ RTFlowerBuilder >> renderIn: aView [
 	view := aView.
 	super renderIn: aView.
 	self createEdges: rootNodes.
-	view edges pushBack.
+	view geomEdges pushBack.
 	self normalizer
 		elements: elements;
 		build.

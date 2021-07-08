@@ -36,7 +36,7 @@ RTOptimizedForceBasedLayout >> setEdgesFromElements: elements [
 	realElements := elements collect: #realElement.
 	view ifNil: [ ^ self ].
 	
-	realEdges := view edges select: [ :el | 
+	realEdges := view geomEdges select: [ :el | 
 		(el isUsedInLayout and: [ realElements includes: el from ]) and: [ realElements includes: el to ] ].
 	mockEdges := realEdges collect: [ :e | 
 							RTMockEdge new 

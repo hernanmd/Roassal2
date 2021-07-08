@@ -20,7 +20,7 @@ RTScrollPadBuilderExamples >> example2 [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 
@@ -44,7 +44,7 @@ RTScrollPadBuilderExamples >> padWithScalableBar [
 				height: #numberOfMethods;
 				linearFillColor: #numberOfLinesOfCode within: RTObject withAllSubclasses.
 	b nodes: RTObject withAllSubclasses.
-	b edges connectFrom: #superclass.
+	b geomEdges connectFrom: #superclass.
 	b layout tree.
 	b build.
 

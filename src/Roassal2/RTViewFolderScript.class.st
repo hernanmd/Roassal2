@@ -28,7 +28,7 @@ RTViewFolderScript >> execute [
 		b shape box 
 			size: [ :f | (f size + 1) log * 3 ].
 		b nodes: fileRef allChildren.
-		b edges connectFrom: #parent.
+		b geomEdges connectFrom: #parent.
 		b layout tree.
 
 	].

@@ -149,7 +149,7 @@ RTGradientColoredLineExample >> exampleDependencies [
 
 	RTForceBasedLayout new charge: -300; on: es.
 
-	v edges do: #remove.
+	v geomEdges do: #remove.
 
 	eb := RTEdgeBuilder new.
 	eb view: v.

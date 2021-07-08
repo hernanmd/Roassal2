@@ -115,12 +115,6 @@ RTEdgeDrivenLayout >> doNotAttachPoint [
 	shouldSetDefaultAttachPoint := false
 ]
 
-{ #category : #private }
-RTEdgeDrivenLayout >> edges [
-	
-	^ edges
-]
-
 { #category : #accessing }
 RTEdgeDrivenLayout >> edges: aCollection [
 	"Set the list of edges that should be considered for the layout.
@@ -164,6 +158,12 @@ RTEdgeDrivenLayout >> executeOnElements: elements [
 RTEdgeDrivenLayout >> fromPositions: anArray [
 	
 	fromPositions := anArray
+]
+
+{ #category : #private }
+RTEdgeDrivenLayout >> geomEdges [
+	
+	^ edges
 ]
 
 { #category : #'initialize-release' }

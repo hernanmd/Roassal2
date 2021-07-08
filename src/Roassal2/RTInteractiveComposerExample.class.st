@@ -22,7 +22,7 @@ i for: Class do: [ :aClass |
 	b := RTMondrian new.
 	b shape label text: #selector.
 	b nodes: aClass methods.
-	b edges connectToAll: #dependentMethods.
+	b geomEdges connectToAll: #dependentMethods.
 	b layout force.
 	b
 ].
@@ -48,7 +48,7 @@ i forCollectionOf: Class do: [ :someClasses |
 i for: Class do: [ :aClass |
 	b := RTMondrian new.
 	b nodes: aClass methods.
-	b edges connectToAll: #dependentMethods.
+	b geomEdges connectToAll: #dependentMethods.
 	b layout tree.
 	b normalizer normalizeSize: #numberOfLinesOfCode.
 	b

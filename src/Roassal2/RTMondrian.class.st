@@ -154,18 +154,9 @@ RTMondrian >> currentFrame [
 	^ currentFrame
 ]
 
-{ #category : #accessing }
-RTMondrian >> edges [
-	edgeBuilder 
-		elements: self currentElements; 
-		view: view;
-		shapeBuilder: shapeBuilder.
-	^ edgeBuilder
-]
-
 { #category : #'deprecated - compatibility layer' }
 RTMondrian >> edges: objects from: fromBlock to: toBlock [
-	^ self edges
+	^ self geomEdges
 			objects: objects;
 			connectFrom: fromBlock to: toBlock
 		
@@ -173,12 +164,21 @@ RTMondrian >> edges: objects from: fromBlock to: toBlock [
 
 { #category : #'deprecated - compatibility layer' }
 RTMondrian >> edgesFrom: aBlock [
-	^ self edges connectFrom: aBlock
+	^ self geomEdges connectFrom: aBlock
 ]
 
 { #category : #'deprecated - compatibility layer' }
 RTMondrian >> flowLayout [
 	^ self layout flow
+]
+
+{ #category : #accessing }
+RTMondrian >> geomEdges [
+	edgeBuilder 
+		elements: self currentElements; 
+		view: view;
+		shapeBuilder: shapeBuilder.
+	^ edgeBuilder
 ]
 
 { #category : #initialization }

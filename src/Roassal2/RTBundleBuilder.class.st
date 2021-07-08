@@ -87,7 +87,7 @@ RTBundleBuilder >> createLabelFor: e view: aView [
 RTBundleBuilder >> createSliderIfNecessary: aView [
 	| bedges slider |
 	sliderShape ifNil: [ ^ self ].
-	bedges := aView edges select: [ :e | e shape = bezier ].
+	bedges := aView geomEdges select: [ :e | e shape = bezier ].
 	slider := RTSlider new.
 	slider shape shape: sliderShape. 
 	slider move: #below; view: aView; callback: [:v| 
@@ -126,7 +126,7 @@ RTBundleBuilder >> defaultInteractions [
 		when: TRMouseEnter do: [ :evt | | red blue ed el |
 			el := evt element.
 			hl value: el value: Color black.
-			ed := el view edges.
+			ed := el view geomEdges.
 			red := ed select: [ :e | e from model = el model ].
 			red := red, (red flatCollect: [:e | el view elementsFromModel: e to model ]).
 			red do: [ :e | hl value: e value: Color green ].
@@ -164,11 +164,6 @@ RTBundleBuilder >> edgeBuilderDo: aBlock [
 ]
 
 { #category : #accessing }
-RTBundleBuilder >> edges [
-	^ edges
-]
-
-{ #category : #accessing }
 RTBundleBuilder >> elements [
 	^ elements.
 ]
@@ -182,6 +177,11 @@ RTBundleBuilder >> explore: atree using: ablock [
 RTBundleBuilder >> from: aCollection using: ablock [
 	childrenBlock := ablock.
 	^ rootNodes := aCollection collect: [ :obj | self createElements: obj using: ablock depth: 1 ].
+]
+
+{ #category : #accessing }
+RTBundleBuilder >> geomEdges [
+	^ edges
 ]
 
 { #category : #initialization }
@@ -231,9 +231,9 @@ RTBundleBuilder >> renderIn: aView [
 		elements: elements;
 		connectToAll: childrenBlock.
 	layoutBuilder setUpElements: elements.
-	view edges do: #remove.
+	view geomEdges do: #remove.
 	self createBezierIfNecessary: aView.
-	view edges pushBack.
+	view geomEdges pushBack.
 	center := elements encompassingRectangle center.
 	(elements select: [ :e | (childrenBlock rtValue: e model) isEmpty ]) 
 		do: [ :e | self createLabelFor: e view: aView ].

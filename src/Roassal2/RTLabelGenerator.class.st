@@ -68,7 +68,12 @@ RTLabelGenerator >> densityMax: k m: m [
 ]
 
 { #category : #private }
-RTLabelGenerator >> epsilon [
+RTLabelGenerator >> flooredMod: a n: num [
+	^ a - (num * (a / num) floor).
+]
+
+{ #category : #private }
+RTLabelGenerator >> geomEpsilon [
 	" Compute the machine epsilon for the float type, the largest positive 
  	floating-point value that, when added to 1, results in a value equal to 1 due to 
  	roundoff."
@@ -79,11 +84,6 @@ RTLabelGenerator >> epsilon [
 	epsilon := temp.
 	^ epsilon.
 	
-]
-
-{ #category : #private }
-RTLabelGenerator >> flooredMod: a n: num [
-	^ a - (num * (a / num) floor).
 ]
 
 { #category : #initialization }
@@ -219,7 +219,7 @@ RTLabelGenerator >> simplicityMax [
 
 { #category : #private }
 RTLabelGenerator >> vMin: min max: max step: step [
-	^ ((self flooredMod: min n: step) < (self epsilon) 
+	^ ((self flooredMod: min n: step) < (self geomEpsilon) 
 	and: [ min <= 0 and: [ max >= 0 ] ]) ifTrue: [ 1 ] ifFalse: [ 0 ]
 ]
 

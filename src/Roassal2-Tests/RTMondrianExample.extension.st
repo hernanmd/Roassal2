@@ -12,11 +12,11 @@ classes := RTObject withAllSubclasses, RTTest withAllSubclasses.
 b := RTMondrian new.
 b shape circle.
 b nodes: classes.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 
 b shape bezierLineFollowing: #superclass;
 	color: (Color blue alpha: 0.2).
-b edges 
+b geomEdges 
 	notUseInLayout;
 	connectToAll: #dependentClasses.
 b normalizer

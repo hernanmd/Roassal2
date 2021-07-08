@@ -91,7 +91,7 @@ RTSVGPolygon >> points: anArrayOfPoints [
 { #category : #'as yet unclassified' }
 RTSVGPolygon >> setPoints: anElement in: aRectangle [
 	|  roundedPoints |
-	roundedPoints := ((anElement copy translateTo: (aRectangle center)) vertices).
+	roundedPoints := ((anElement copy translateTo: (aRectangle center)) geomVertices).
 	roundedPoints := roundedPoints collect: [ :p | (p x rounded) @ (p y rounded)].
 	^ roundedPoints
 ]

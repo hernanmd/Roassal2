@@ -104,7 +104,7 @@ b shape circle
 	if: [ :cls | cls numberOfMethods > 10 ] fillColor: Color red.
 
 b nodes: classesToAnalyze.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 b normalizer normalizeSize: #numberOfLinesOfCode min: 5 max: 15 using: #sqrt.
 b layout tree.
 b build.
@@ -186,7 +186,7 @@ b shape circle
 	if: [ :cls | cls numberOfMethods > 10 ] fillColor: Color red.
 
 b nodes: classesToAnalyze.
-b edges connectFrom: #superclass.
+b geomEdges connectFrom: #superclass.
 b normalizer normalizeSize: #numberOfLinesOfCode min: 5 max: 15 using: #sqrt.
 b layout tree.
 b build.

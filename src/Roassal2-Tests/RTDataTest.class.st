@@ -68,7 +68,7 @@ RTDataTest >> testConnectColor [
 	b build.
 	
 	self assert: b view numberOfEdges equals: 4.
-	self assert: b view edges last trachelShape color equals: Color blue.
+	self assert: b view geomEdges last trachelShape color equals: Color blue.
 ]
 
 { #category : #tests }

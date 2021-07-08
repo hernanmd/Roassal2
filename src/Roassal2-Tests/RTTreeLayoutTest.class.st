@@ -137,8 +137,8 @@ RTTreeLayoutTest >> testHorizontallyReversed [
 	self assert: elements second position y equals: elements third position y.
 	
 	"ATTACHPOINT"
-	self assert: (v edges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
-	self assert: (v edges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
+	self assert: (v geomEdges noneSatisfy: [ :ed | ed shape attachPoint isInverted ]).
+	self assert: (v geomEdges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
 ]
 
 { #category : #'tests - reversed' }
@@ -197,7 +197,7 @@ RTTreeLayoutTest >> testVerticallyReversed [
 	self assert: elements second position y equals: elements third position y.
 	
 	"ATTACHPOINT"
-	self assert: (v edges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
+	self assert: (v geomEdges collect: [ :ed | ed shape attachPoint ]) asSet size equals: 1.
 ]
 
 { #category : #'tests - reversed' }

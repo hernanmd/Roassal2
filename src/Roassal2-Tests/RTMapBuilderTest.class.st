@@ -118,6 +118,6 @@ RTMapBuilderTest >> testRoutes [
 	builder renderIn: builder view.
 	
 	self assert: builder view numberOfEdges = 3.
-	self assert: builder view edges first from model = 'Santiago'.
-	self assert: builder view edges last from model = 'Sao Paulo'.
+	self assert: builder view geomEdges first from model = 'Santiago'.
+	self assert: builder view geomEdges last from model = 'Sao Paulo'.
 ]
